@@ -61,7 +61,7 @@ class BasicNavigator(Node):
           history=QoSHistoryPolicy.KEEP_LAST,
           depth=1)
 
-        self.initial_pose_received = False
+        self.initial_pose_received = True
         self.nav_through_poses_client = ActionClient(self,
                                                      NavigateThroughPoses,
                                                      'navigate_through_poses')
@@ -310,9 +310,9 @@ class BasicNavigator(Node):
 
     def waitUntilNav2Active(self, navigator='bt_navigator', localizer='amcl'):
         """Block until the full navigation system is up and running."""
-        self._waitForNodeToActivate(localizer)
-        if localizer == 'amcl':
-            self._waitForInitialPose()
+        #self._waitForNodeToActivate(localizer)
+        #if localizer == 'amcl':
+            #self._waitForInitialPose()
         self._waitForNodeToActivate(navigator)
         self.info('Nav2 is ready for use!')
         return
